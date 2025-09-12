@@ -1,0 +1,8 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background container with primary color -->
+  <rect width="16" height="16" rx="4" fill="#667eea"/>
+  
+  <!-- Home icon centered and scaled for 16x16 -->
+  <path d="M4 9L8 5L12 9V13C12 13.2761 11.7761 13.5 11.5 13.5H9.5V11H6.5V13.5H4.5C4.22386 13.5 4 13.2761 4 13V9Z" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M6.5 13.5V11H9.5V13.5" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

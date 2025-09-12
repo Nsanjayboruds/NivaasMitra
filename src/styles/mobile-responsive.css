@@ -1,0 +1,339 @@
+
+:root {
+  --mobile-sm: 360px;
+  --mobile-md: 480px;
+  --tablet: 768px;
+  --desktop-sm: 1024px;
+  --desktop-lg: 1200px;
+}
+
+
+@media (hover: none) and (pointer: coarse) {
+ 
+  .btn:hover,
+  .nav-link:hover,
+  .property-card:hover {
+    transform: none;
+  }
+
+ 
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.mobile-center {
+  text-align: center;
+}
+
+.mobile-full-width {
+  width: 100%;
+}
+
+
+@media (max-width: 768px) {
+ 
+  .container, .header-container, .hero-content, .services-section .container, .pricing-section .container, .about-section .container, .property-detail-page .container, .footer > .container {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+ 
+  .hero-main, .stats-container, .hero-stats, .services-tabs, .pricing-grid, .team-grid, .footer-content, .property-content, .amenities-grid, .places-grid {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+ 
+  .collapse-on-mobile-2 { grid-template-columns: 1fr 1fr !important; }
+  .collapse-on-mobile-1 { grid-template-columns: 1fr !important; }
+
+ 
+  table, .pricing-grid, .services-tabs { overflow-x: auto; }
+  table { display: block; }
+
+ 
+  .stack-mobile, .header-actions, .cta-buttons, .hero-buttons { flex-direction: column !important; gap: var(--space-md); }
+
+ 
+  .pricing-card, .service-card, .team-card, .stat-card, .property-card, .detail-card { width: 100%; }
+
+ 
+  h1.hero-title { font-size: clamp(2.1rem, 7vw, 2.9rem); }
+  .hero-subtitle { font-size: 1.05rem; }
+
+ 
+  .hero-image, .team-card, .pricing-card, .service-card, .property-main, .agent-card, .inquiry-form { box-shadow: var(--shadow-md); }
+
+ 
+  .search-container { max-width: 100%; }
+
+ 
+  img, video, canvas { max-width: 100%; height: auto; }
+
+ 
+  .footer-links-grid a { line-height: 1.3; }
+ }
+
+
+@media (max-width: 480px) {
+ 
+  section, .services-section, .pricing-section, .about-section, .property-detail-page { padding-top: 32px; padding-bottom: 32px; }
+
+ 
+  .stats-container, .hero-stats { gap: var(--space-md); }
+
+ 
+  button, .btn, .contact-button, .search-button { white-space: nowrap; }
+
+ 
+  .property-title-section h1 { word-break: break-word; hyphens: auto; }
+
+ 
+  .amount { font-size: 2.2rem !important; }
+
+ 
+  .hide-480 { display: none !important; }
+
+ 
+  .thumbnail-grid { gap: 8px; }
+
+ 
+  .footer-links-grid a, .plan-features li, .service-features li { padding: 6px 4px; }
+}
+
+
+@media (max-width: 380px) {
+  .hero-title { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+  .search-button, .cta-button, .contact-button { padding: var(--space-md) var(--space-lg); }
+  .pricing-card, .service-card { padding: 24px 18px; }
+  .plan-header h3 { font-size: 1.4rem; }
+  .property-price { font-size: 1.3rem; }
+  .property-stats { gap: 12px; }
+  .property-stats .stat { flex-wrap: wrap; }
+}
+
+
+
+
+
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { padding-top: 70px; min-height: 420px; }
+  .hero-image { height: 240px; }
+  .nav { max-height: calc(100vh - 70px); overflow-y: auto; }
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-hide {
+    display: none !important;
+  }
+
+  .mobile-show {
+    display: block !important;
+  }
+
+ 
+  .mobile-grid-1 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mobile-grid-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+ 
+  .mobile-spacing-sm {
+    padding: var(--space-sm) !important;
+  }
+
+  .mobile-spacing-md {
+    padding: var(--space-md) !important;
+  }
+
+  .mobile-spacing-lg {
+    padding: var(--space-lg) !important;
+  }
+
+ 
+  .mobile-text-sm {
+    font-size: 0.9rem !important;
+  }
+
+  .mobile-text-center {
+    text-align: center !important;
+  }
+
+  .mobile-text-left {
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 480px) {
+ 
+  .mobile-sm-hide {
+    display: none !important;
+  }
+
+  .mobile-sm-stack {
+    flex-direction: column !important;
+    gap: var(--space-sm) !important;
+  }
+
+  .mobile-sm-full {
+    width: 100% !important;
+  }
+
+  .mobile-sm-center {
+    text-align: center !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+ 
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+ 
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+ 
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: rgba(49, 130, 206, 0.2);
+    /* tap-highlight-color: rgba(49, 130, 206, 0.2); */
+  }
+
+ 
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+ 
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+ 
+  body {
+    color: var(--text-primary);
+    background: var(--bg-primary);
+  }
+
+ 
+  .text-muted {
+    color: var(--text-secondary);
+  }
+
+ 
+  .btn + .btn {
+    margin-top: var(--space-sm);
+  }
+}
+
+
+@media (max-width: 768px) {
+ 
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+
+ 
+  img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: optimizeQuality;
+  }
+
+ 
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+
+@media (max-width: 360px) {
+ 
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+ 
+
+ 
+  .flex {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+ 
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  h3 {
+    font-size: 1.3rem !important;
+  }
+  h4 {
+    font-size: 1.1rem !important;
+  }
+  h5 {
+    font-size: 1rem !important;
+  }
+  h6 {
+    font-size: 0.9rem !important;
+  }
+}
