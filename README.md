@@ -1,10 +1,8 @@
 # 🏠 NivaasMitra
 
 [![CI](https://github.com/Nsanjayboruds/NivaasMitra/actions/workflows/blank.yml/badge.svg)](https://github.com/Nsanjayboruds/NivaasMitra/actions/workflows/blank.yml)
-![GitHub Repo stars](https://img.shields.io/github/stars/Nsanjayboruds/NivaasMitra?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/Nsanjayboruds/NivaasMitra?style=social)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Nsanjayboruds/NivaasMitra)
-![License](https://img.shields.io/github/license/Nsanjayboruds/NivaasMitra)
 
 ---
 
@@ -64,21 +62,3 @@ NivaasMitra/
 │   └── blank.yml
 ├── package.json
 └── README.md
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
