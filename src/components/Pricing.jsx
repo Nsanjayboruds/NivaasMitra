@@ -84,39 +84,42 @@ const Pricing = ({ onNavigateToContact }) => {
   ];
 
   // ✅ Razorpay payment handler
-  const handlePayment = async (amount, planName) => {
-    try {
-      const res = await fetch("http://localhost:5000/create-order", { method: "POST" });
-      const order = await res.json();
+ const handlePayment = async (amount, planName) => {
+  try {
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Replace with your test key
-        amount: amount * 100, // convert ₹ to paise
-        currency: "INR",
-        name: "NivaasMitra",
-        description: `${planName} Plan Subscription`,
-        order_id: order.id,
-        handler: function (response) {
-          alert(
-            `✅ Payment Successful!\nPayment ID: ${response.razorpay_payment_id}\nPlan: ${planName}`
-          );
-          console.log(response);
-        },
-        prefill: {
-          name: "Test User",
-          email: "user@example.com",
-          contact: "9999999999",
-        },
-        theme: { color: "#4CAF50" },
-      };
+    const res = await fetch(`${BACKEND_URL}/create-order`, { method: "POST" });
+    const order = await res.json();
 
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
-    } catch (error) {
-      console.error("Payment Error:", error);
-      alert("❌ Something went wrong. Please try again.");
-    }
-  };
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: amount * 100,
+      currency: "INR",
+      name: "NivaasMitra",
+      description: `${planName} Plan Subscription`,
+      order_id: order.id,
+      handler: function (response) {
+        alert(
+          `✅ Payment Successful!\nPayment ID: ${response.razorpay_payment_id}\nPlan: ${planName}`
+        );
+        console.log(response);
+      },
+      prefill: {
+        name: "Test User",
+        email: "user@example.com",
+        contact: "9999999999",
+      },
+      theme: { color: "#4CAF50" },
+    };
+
+    const razorpay = new window.Razorpay(options);
+    razorpay.open();
+  } catch (error) {
+    console.error("Payment Error:", error);
+    alert("❌ Something went wrong. Please try again.");
+  }
+};
+
 
   return (
     <section className="pricing-section">
