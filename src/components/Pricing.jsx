@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import "./Pricing.css"
+import { useState } from "react";
+import "./Pricing.css";
 
 const Pricing = ({ onNavigateToContact }) => {
-  const [isAnnual, setIsAnnual] = useState(false)
+  const [isAnnual, setIsAnnual] = useState(false);
 
   const pricingPlans = [
     {
@@ -63,7 +63,7 @@ const Pricing = ({ onNavigateToContact }) => {
       limitations: [],
       popular: false,
     },
-  ]
+  ];
 
   const additionalServices = [
     {
@@ -81,7 +81,42 @@ const Pricing = ({ onNavigateToContact }) => {
       price: 7499,
       description: "Professional legal document assistance",
     },
-  ]
+  ];
+
+  // ✅ Razorpay payment handler
+  const handlePayment = async (amount, planName) => {
+    try {
+      const res = await fetch("http://localhost:5000/create-order", { method: "POST" });
+      const order = await res.json();
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Replace with your test key
+        amount: amount * 100, // convert ₹ to paise
+        currency: "INR",
+        name: "NivaasMitra",
+        description: `${planName} Plan Subscription`,
+        order_id: order.id,
+        handler: function (response) {
+          alert(
+            `✅ Payment Successful!\nPayment ID: ${response.razorpay_payment_id}\nPlan: ${planName}`
+          );
+          console.log(response);
+        },
+        prefill: {
+          name: "Test User",
+          email: "user@example.com",
+          contact: "9999999999",
+        },
+        theme: { color: "#4CAF50" },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (error) {
+      console.error("Payment Error:", error);
+      alert("❌ Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <section className="pricing-section">
@@ -95,9 +130,12 @@ const Pricing = ({ onNavigateToContact }) => {
           <p>Flexible pricing options for all your real estate needs</p>
         </div>
 
-  <div className="billing-toggle">
+        <div className="billing-toggle">
           <span className={!isAnnual ? "active" : ""}>Monthly</span>
-          <button className={`toggle-switch ${isAnnual ? "annual" : ""}`} onClick={() => setIsAnnual(!isAnnual)}>
+          <button
+            className={`toggle-switch ${isAnnual ? "annual" : ""}`}
+            onClick={() => setIsAnnual(!isAnnual)}
+          >
             <div className="toggle-slider"></div>
           </button>
           <span className={isAnnual ? "active" : ""}>
@@ -107,10 +145,7 @@ const Pricing = ({ onNavigateToContact }) => {
 
         <div className="pricing-grid">
           {pricingPlans.map((plan) => (
-            <div
-              key={plan.id}
-              className={`pricing-card ${plan.popular ? "popular" : ""}`}
-            >
+            <div key={plan.id} className={`pricing-card ${plan.popular ? "popular" : ""}`}>
               {plan.popular && <div className="popular-badge">Most Popular</div>}
 
               <div className="plan-header">
@@ -118,16 +153,20 @@ const Pricing = ({ onNavigateToContact }) => {
                 <p>{plan.description}</p>
                 <div className="price">
                   <span className="currency">₹</span>
-                  <span className="amount">{isAnnual ? Math.floor(plan.annualPrice / 12) : plan.monthlyPrice}</span>
+                  <span className="amount">
+                    {isAnnual ? Math.floor(plan.annualPrice / 12) : plan.monthlyPrice}
+                  </span>
                   <span className="period">/month</span>
                 </div>
                 {isAnnual && (
-                  <div className="annual-savings">Save ₹{plan.monthlyPrice * 12 - plan.annualPrice} annually</div>
+                  <div className="annual-savings">
+                    Save ₹{plan.monthlyPrice * 12 - plan.annualPrice} annually
+                  </div>
                 )}
               </div>
 
               <div className="plan-features">
-                <h4>What&#39;s Included:</h4>
+                <h4>What's Included:</h4>
                 <ul>
                   {plan.features.map((feature, index) => (
                     <li key={index} className="included">
@@ -151,6 +190,16 @@ const Pricing = ({ onNavigateToContact }) => {
                   </>
                 )}
               </div>
+
+              {/* ✅ Razorpay Button */}
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  handlePayment(isAnnual ? plan.annualPrice : plan.monthlyPrice, plan.name)
+                }
+              >
+                Buy Now
+              </button>
             </div>
           ))}
         </div>
@@ -174,45 +223,21 @@ const Pricing = ({ onNavigateToContact }) => {
           </div>
         </div>
 
-        <div className="pricing-faq">
-          <h3>Frequently Asked Questions</h3>
-          <div className="faq-grid">
-            <div className="faq-item">
-              <h4>Can I change my plan anytime?</h4>
-              <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately.</p>
-            </div>
-            <div className="faq-item">
-              <h4>Do you offer refunds?</h4>
-              <p>We offer a 30-day satisfaction guarantee. If you&#39;re not happy, we&#39;ll refund your payment.</p>
-            </div>
-            <div className="faq-item">
-              <h4>Is there a contract commitment?</h4>
-              <p>No long-term contracts required. You can cancel anytime with 30 days notice.</p>
-            </div>
-          </div>
-        </div>
-
         <div className="pricing-cta">
           <h3>Ready to Get Started?</h3>
           <p>Contact us today for a personalized consultation and custom pricing options.</p>
           <div className="cta-buttons">
-            <button 
-              className="btn btn-primary"
-              onClick={onNavigateToContact}
-            >
+            <button className="btn btn-primary" onClick={onNavigateToContact}>
               Start Free Consultation
             </button>
-            <button 
-              className="btn btn-secondary"
-              onClick={onNavigateToContact}
-            >
+            <button className="btn btn-secondary" onClick={onNavigateToContact}>
               Contact Sales Team
             </button>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Pricing
+export default Pricing;
